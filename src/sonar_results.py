@@ -139,7 +139,7 @@ for index, row in df.iterrows():
                                 price = None
                         except (ValueError, TypeError):
                             price = None
-                    
+                    # Mapping dataframe objects with database columns
                     sonar_rows.append({
                         'result_id': entry.get('result_id'),
                         'part_id': part_id,
@@ -172,7 +172,7 @@ if 'date_sonar' in sonar_df.columns:
     sonar_df['date_sonar'] = pd.to_datetime(sonar_df['date_sonar'], errors='coerce')
 
 # Step 4: Insert data in batches with more careful error handling
-batch_size = 10000
+batch_size = 100000
 total_rows = len(sonar_df)
 num_batches = math.ceil(total_rows / batch_size)
 
@@ -212,7 +212,7 @@ for i in range(num_batches):
                         price = float(price)
                     except:
                         price = None
-                
+                # Converting dataframe into a tuple for creatinang insert script
                 data_tuples.append((
                     row.get('result_id'), 
                     row.get('part_id'), 
@@ -287,8 +287,8 @@ for i in range(num_batches):
                 successful_inserts += 1
             except Exception as row_e:
                 conn.rollback()
-                print(f"  ❌ Error on row {start_idx + j}: {str(row_e)}")
-                print(f"  Problem values: delivery={row.get('delivery')}, price={row.get('price')}")
+                print(f"Error on row {start_idx + j}: {str(row_e)}")
+                print(f"Problem values: delivery={row.get('delivery')}, price={row.get('price')}")
         
         print(f"  ✓ Successfully inserted {successful_inserts} out of {end_idx - start_idx} rows individually")
 
