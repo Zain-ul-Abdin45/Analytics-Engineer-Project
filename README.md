@@ -74,7 +74,7 @@ For the final analytical layer:
 
 Despite the Superset version available having some legacy limitations, I made full use of chart types like bar charts, line graphs, pie charts, and maps.
 
-The final dashboard is provided both as:
+The final dashboard is provided as:
 - A **PDF file** (for easy offline viewing)
 
 <img width="1391" alt="image" src="https://github.com/user-attachments/assets/0efd5814-58a5-4bda-9802-3b20761442c4" />
