@@ -7,6 +7,22 @@ This document outlines the PostgreSQL database schema implemented for storing an
 
 ### Core Tables
 
+1. **`client_part_collection_sample`**
+   - Associates clients with their parts portfolio
+   - Contains timestamps for when parts were added
+   - Includes all client-specific part metadata
+
+2. **`parsed_sonar_data`**
+   - Cleaned and processed version of sonar results
+   - Contains structured fields for analysis:
+     - `price` (numeric(18,10))
+     - `delivery` (bigint)
+     - `date_sonar` (timestamp)
+     - `currency` (text)
+     - `status` (text)
+
+### Relational Tables
+
 1. **`clients`**
    - Primary table storing client information
    - `client_id` (varchar(50)) as primary key
@@ -32,34 +48,19 @@ This document outlines the PostgreSQL database schema implemented for storing an
    - Contains `region_name` (varchar(100))
    - Relationships: Referenced by client_regions
 
-### Relational Tables
 
 5. **`client_regions`**
    - Maps clients to their applicable regions
    - Contains foreign keys to both `clients` and `regions`
    - Additional attributes include `country`, `currency`, and `data_quality`
 
-6. **`client_part_collection_sample`**
-   - Associates clients with their parts portfolio
-   - Contains timestamps for when parts were added
-   - Includes all client-specific part metadata
 
-### Data Collection Tables
-
-7. **`sonar_results`**
+6. **`sonar_results`**
    - Raw storage of web scraping results
    - Contains `result_id` (varchar(50)) as primary key
    - Links to `part_id`, `client_id`, and `supplier_id`
    - Stores scraped price information and metadata
 
-8. **`parsed_sonar_data`**
-   - Cleaned and processed version of sonar results
-   - Contains structured fields for analysis:
-     - `price` (numeric(18,10))
-     - `delivery` (bigint)
-     - `date_sonar` (timestamp)
-     - `currency` (text)
-     - `status` (text)
 
 ## Data Relationships
 
@@ -71,17 +72,17 @@ The schema implements several one-to-many relationships:
 
 ## Data Types and Constraints
 
-- IDs are implemented as variable-length character strings (varchar(50))
+- IDs are implemented as variable-length character strings (varchar(50)) due to being GUIDs
 - Timestamps include timezone information
-- Country codes use standard 3-character format
+- Country codes use the ISO-standard 3-character format
 - Prices are stored with high precision (numeric(18,10))
 - Delivery times are stored as bigint values (days)
 
 ## ETL Process Flow
 
-1. Raw client and part data is loaded into `clients` and `parts`
-2. Sonar web scraping results are stored in `sonar_results`
-3. ETL processes parse and clean this data into `parsed_sonar_data`
+1. Raw client and part data are loaded into `client_part_collection_sample` and `parsed_sonar_data`
+2. Sonar web scraping results are then cleaned and moved into `sonar_results`
+3. ETL processes parse and clean this data into `parts`, `clients_region`, `suppliers` & `regions`
 4. Analysis queries primarily work with the parsed data table
 
 This database design supports the visualization dashboard by providing clean, structured data that can be efficiently queried for geographic, supplier, price, and quality analysis.
