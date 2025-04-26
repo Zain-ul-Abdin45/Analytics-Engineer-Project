@@ -9,7 +9,7 @@ The focus was on exploring key patterns across dimensions such as geography, pri
 
 Key analytical questions included:
 - How many customers or shops are active per country?
-- How available are price points per part, per shop, and per country?
+- How many price points are available per part, per shop, and per country?
 - How do pricing and delivery times evolve over time?
 - Which shops provide the richest or most complete datasets?
 - Are there trends based on supplier or country of origin?
@@ -76,6 +76,9 @@ Despite the Superset version available having some legacy limitations, I made fu
 
 The final dashboard is provided both as:
 - A **PDF file** (for easy offline viewing)
+
+<img width="1391" alt="image" src="https://github.com/user-attachments/assets/0efd5814-58a5-4bda-9802-3b20761442c4" />
+
 
 ---
 
