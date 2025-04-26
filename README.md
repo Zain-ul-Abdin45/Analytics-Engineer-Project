@@ -92,4 +92,57 @@ Key packages include:
 
 PostgreSQL installation and Superset setup are assumed to be available locally for full reproduction of the environment.
 
+
+##Commands to Establish the environment (Mac Version)
+Installing Homebrew to install Applications locally through the internet
+
+`/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`
+
+I already had python 3.13 version running so i only had to work with virtual environment creation
+
+`brew install pyenv`
+
+Then, installinga  compatible version of Apache Superset 
+`pyenv install 3.10.7`
+
+
+Activating Environment and Installing dependable libraries:
+
+`python -m venv venv`
+`source venv/bin/activate`
+`pip install pandas matplotlib seaborn apache-superset psycopg2 dbduck`
+
+
+Installing Python 
+For the Apache Superset capability you need to have 3.10.7 version of Python so installing command on Mac is
+
+Installing Postgres using Homebrew
+`brew install postgresql`
+`brew services start postgresql`
+
+
+Command to create a database
+
+`CREATE DATABASE markt_pilot`
+
+Initializing Superset
+
+`superset db upgrade`
+
+Creating a Username and Password for UI as it asks for your User and password when you launch it for the first time
+So,
+
+`export FLASK_APP=superset`
+`superset fab create-admin`
+
+It will prompt you to add a username, password, and email.
+
+Command to launch Apache Superset
+
+`superset run -p 8088 --with-threads --reload --debugger`
+
+And it will be available on 
+`http://localhost:8088`
+
+
 ---
