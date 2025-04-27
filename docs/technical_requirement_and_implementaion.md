@@ -123,6 +123,7 @@ The visualization strategy was divided between Python-based EDA (Seaborn/Matplot
 ## 5. Future Enhancements and Scalability
 
 - **Parallelized Parsing:** Integrate multiprocessing for sonar parsing at scale.
+- **Real time integration** We can integrate data generators with database with any messaging tool and get our real time analysis.
 - **Incremental Data Capture:** Only ingest newly available records to optimize processing, using an incremental approach.
 - **Database Integration:** Load normalized data into cloud SQL warehouses (e.g., Redshift, PostgreSQL, Athena) for large-scale analytics.
 - **Data Warehouse Development:** Implement a *Medallion Architecture* (bronze, silver, gold layers) for improved data lifecycle management.
@@ -133,6 +134,7 @@ The visualization strategy was divided between Python-based EDA (Seaborn/Matplot
   - Supplier reliability indexes.
   - Competitive side-by-side supplier analysis.
   - Categorical analysis with Status and Unit.
+  - Once the data is integrated with any data-storing model, we can proceed with real-time dashboarding and monitoring for dashbaords.
 - **Scalability Improvements:**
   - Move from single-node Pandas to distributed frameworks like Spark.
   - Introduce data versioning and validation pipelines.
