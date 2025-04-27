@@ -8,7 +8,7 @@ The system must handle potentially messy JSON-like fields, perform efficient par
 ### Requirements:
 - Ingest raw data with nested sonar result fields.
 - Parse and normalize nested fields into a structured format.
-- Perform Exploratory Data Analysis (EDA) to uncover patterns.
+- Perform Exploratory Data Analysis (EDA) to uncover patterns and clean data i,e: Units have the same values with different notations.
 - Build clear visualizations to support business decision-making.
 
 ---
@@ -32,6 +32,7 @@ The system must handle potentially messy JSON-like fields, perform efficient par
 - **DBDUCK** for data reading
 - **Pandas** for data cleaning and tabular transformation
 - **Matplotlib** and **Seaborn** for exploratory visualizations
+- **PSQL** used for data storing and further cleaning, querying, and deep understanding for data, for example: some data contained duplicate values with minor Camel characters or all-small, so handled through queries, built & executed queries for dashboard development.
 - **Apache Superset** for dashboard creation and professional BI-grade visualization
 - Custom utility functions for robust parsing and chunk processing
 
@@ -67,7 +68,7 @@ The visualization strategy was divided between Python-based EDA (Seaborn/Matplot
 - **Sonar Results Distribution:** Shows the frequency of entries with specific numbers of sonar results, revealing that most entries have 0 results.
 - **Unit Type Analysis:** Visualizes the distribution of measurement units across the dataset, showing standardization patterns with ST and EA as dominant units.
 
-> **Styling Notes:** Clean, minimal styling (`sns.set_style('whitegrid')`) was chosen for professional readability in Python visualizations, while Superset dashboards used cohesive color themes and interactive elements.
+> **Styling Notes:** Clean, minimal styling (`sns.set_style('whitegrid')`) was chosen for professional readability in Python visualizations, while Superset dashboards used cohesive color themes (mainly choose Markt-Pilot color pallets) and interactive elements.
 
 ### Dashboard Components in Apache Superset:
 
@@ -121,19 +122,19 @@ The visualization strategy was divided between Python-based EDA (Seaborn/Matplot
 
 ## 5. Future Enhancements and Scalability
 
-- **Parallelized Parsing:** Integrate multiprocessing or Dask for sonar parsing at scale.
-- **Incremental Data Capture:** Only ingest newly available records to optimize processing.
+- **Parallelized Parsing:** Integrate multiprocessing for sonar parsing at scale.
+- **Incremental Data Capture:** Only ingest newly available records to optimize processing, using an incremental approach.
 - **Database Integration:** Load normalized data into cloud SQL warehouses (e.g., Redshift, PostgreSQL, Athena) for large-scale analytics.
 - **Data Warehouse Development:** Implement a *Medallion Architecture* (bronze, silver, gold layers) for improved data lifecycle management.
 - **Advanced Metrics Development:**
   - Supplier performance scoring.
-  - Fraud and anomaly detection for outlier price/delivery patterns.
 - **Enhanced Visualizations:**
   - Price trend forecasting.
   - Supplier reliability indexes.
   - Competitive side-by-side supplier analysis.
+  - Categorical analysis with Status and Unit.
 - **Scalability Improvements:**
-  - Move from single-node Pandas to distributed frameworks like Spark or Dask.
+  - Move from single-node Pandas to distributed frameworks like Spark.
   - Introduce data versioning and validation pipelines.
 
 ---
