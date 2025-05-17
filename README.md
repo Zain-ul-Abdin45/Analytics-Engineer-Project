@@ -1,5 +1,4 @@
-# MARKT-PILOT Analytics Engineering Take-Home Task
-
+# MARKT-PILOT Analytics Engineering 
 ---
 
 ## 📌 Problem Statement
