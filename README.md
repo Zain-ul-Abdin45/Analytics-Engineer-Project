@@ -1,4 +1,4 @@
-# MARKT-PILOT Analytics Engineering 
+# Analytics Engineering 
 ---
 
 ## 📌 Problem Statement
